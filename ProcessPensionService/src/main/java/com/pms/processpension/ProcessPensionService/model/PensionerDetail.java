@@ -1,4 +1,4 @@
-package com.pms.pensionerdetail.PensionerDetailsService.model;
+package com.pms.processpension.ProcessPensionService.model;
 
 import java.util.Date;
 
@@ -6,14 +6,8 @@ import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-import io.swagger.annotations.ApiModel;
 
-/**
- *  This is the Model package PensionerDetails class
- *  which consist of pensioner details like Name, Date of Birth, PAN,
- *  Salary, Allowance Pension Type, Bank Details.
- *
- */
+import io.swagger.annotations.ApiModel;
 
 @Component
 @ApiModel(description = "Details about the pensioner")
