@@ -12,7 +12,8 @@ import com.pms.processpension.ProcessPensionService.exception.AadharNumberNotFou
 import com.pms.processpension.ProcessPensionService.exception.AuthorizationException;
 import com.pms.processpension.ProcessPensionService.model.PensionerDetail;
 
-@FeignClient(name = "pensioner-detail-service", url = "http://localhost:8100")
+//@FeignClient(name = "pensioner-detail-service", url = "http://localhost:8100")
+@FeignClient(name = "pensioner-detail-service")
 @Component
 public interface PensionerDetailClient {
 	

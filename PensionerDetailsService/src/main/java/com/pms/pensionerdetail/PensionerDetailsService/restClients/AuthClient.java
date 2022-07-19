@@ -14,7 +14,8 @@ import com.pms.pensionerdetail.PensionerDetailsService.model.AuthResponse;
  * 
  */
 
-@FeignClient(name = "authorization-service", url = "http://localhost:8000")
+//@FeignClient(name = "authorization-service", url = "http://localhost:8000")
+@FeignClient(name = "authorization-service")
 @Component
 public interface AuthClient {
 	@GetMapping("/validate")

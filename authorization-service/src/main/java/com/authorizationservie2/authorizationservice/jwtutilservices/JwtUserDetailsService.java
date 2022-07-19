@@ -34,8 +34,10 @@ public class JwtUserDetailsService implements UserDetailsService {
 	 */
 
 	@SuppressWarnings("unchecked")
-	@Override
 	public UserDetails loadUserByUsername(String uid) {
+		/** fetching user by userName, if user is null the throw exception, otherwise
+		 * return user
+		 */
 		logger.info("START");
 		try {
 			UserData custuser = userRepository.findById(uid).orElse(null);
@@ -45,17 +47,17 @@ public class JwtUserDetailsService implements UserDetailsService {
 				logger.info("END - User found");
 
 				return new User(custuser.getUserid(), custuser.getUpassword(),
-						(Collection<? extends GrantedAuthority>) new ArrayList<>());
+						(Collection<? extends GrantedAuthority>) new ArrayList<Object>());
 			} else {
 
 				logger.info("END - UsernameNotFound");
 
-				throw new UsernameNotFoundException("UsernameNotFoundException");
+				throw new UsernameNotFoundException("User not found with userID: "  + uid);
 			}
 		} catch (Exception e) {
 			logger.info("EXCEPTION - UsernameNotFoundException");
 
-			throw new UsernameNotFoundException("UsernameNotFoundException");
+			throw new UsernameNotFoundException("User not found with userID: "  + uid);
 		}
 
 	}

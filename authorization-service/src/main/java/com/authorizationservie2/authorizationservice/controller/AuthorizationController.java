@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.authorizationservie2.authorizationservice.jwtutilservices.JwtUserDetailsService;
@@ -50,12 +51,12 @@ public class AuthorizationController {
 			logger.info(generateToken);
 			logger.info("END");
 			
-			return new ResponseEntity<>(new UserData(uid, null, null, generateToken), HttpStatus.OK);
+			return new ResponseEntity<UserData>(new UserData(uid, null, null, generateToken), HttpStatus.OK);
 		}//if the loaded user password is not same as the entered password  
 		else {
 			logger.info("END - Wrong credentials");
 			
-			return new ResponseEntity<>("Not Accesible", HttpStatus.FORBIDDEN);
+			return new ResponseEntity<String>("Not Accesible", HttpStatus.FORBIDDEN);
 		}
 
 	}
@@ -69,8 +70,9 @@ public class AuthorizationController {
 	 * @return AuthResponse, HttpStatus
 	 */
 	
+	
 	@GetMapping("/validate")
-	public ResponseEntity<?> getTokenValidity(@RequestHeader("Authorization") String token) {
+	public ResponseEntity<AuthorizationResponse> getTokenValidity(@RequestHeader("Authorization") String token) {
 		logger.info("START");
 		
 		//create a instance of authorization response bean
@@ -81,7 +83,7 @@ public class AuthorizationController {
 			
 			logger.info("END - Null Token");
 			
-			return new ResponseEntity<>(res, HttpStatus.FORBIDDEN);
+			return new ResponseEntity<AuthorizationResponse>(res, HttpStatus.FORBIDDEN);
 		}
 		//if the token is not null
 		else {
@@ -98,13 +100,13 @@ public class AuthorizationController {
 				
 				logger.info("END - Token expired");
 				
-				return new ResponseEntity<>(res, HttpStatus.FORBIDDEN);
+				return new ResponseEntity<AuthorizationResponse>(res, HttpStatus.FORBIDDEN);
 			}
 		}
 		
 		logger.info("END - Token accepted");
 		
-		return new ResponseEntity<>(res, HttpStatus.OK);
+		return new ResponseEntity<AuthorizationResponse>(res, HttpStatus.OK);
 	}
 	
 
