@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.pms.processpension.ProcessPensionService.exception.AadharNumberNotFound;
 import com.pms.processpension.ProcessPensionService.exception.AuthorizationException;
@@ -17,7 +18,7 @@ import com.pms.processpension.ProcessPensionService.model.PensionerDetail;
 @Component
 public interface PensionerDetailClient {
 	
-	@GetMapping("/PensionerDetailByAadhaar/{aadhaarNumber}")
+	@GetMapping("/PensionerDetailByAadhaar")
 	public PensionerDetail getPensionerDetailByAadhaar(@RequestHeader("Authorization") String token,
-			@PathVariable("aadhaarNumber") long aadhaarNumber) throws AuthorizationException, AadharNumberNotFound;
+			@RequestParam("aadhaarNumber") long aadhaarNumber) throws AuthorizationException, AadharNumberNotFound;
 }

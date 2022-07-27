@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.opencsv.CSVReader;
@@ -97,11 +98,12 @@ public class PensionerDetailController {
 	 * @return PensionerDetails
 	 * @throws Exception 
 	 */
-	@GetMapping("/PensionerDetailByAadhaar/{aadhaarNumber}")
-	@ApiOperation(value = "Provides the pensioner details", response = PensionerDetail.class)
 	@CrossOrigin
+	@GetMapping("/PensionerDetailByAadhaar")
+	@ApiOperation(value = "Provides the pensioner details", response = PensionerDetail.class)
+	
 	public PensionerDetail getPensionerDetailByAadhaar(@RequestHeader("Authorization") String token,
-			@PathVariable long aadhaarNumber) throws Exception {
+			@RequestParam(name="aadhaarNumber") long aadhaarNumber) throws Exception {
 		
 		LOGGER.info("START");
 		
