@@ -1,0 +1,78 @@
+<form [formGroup] = "loginForm" (ngSubmit) = "onSubmit()">
+<section class="vh-100 gradient-custom">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+        <div
+          class="card bg-dark text-white"
+          style="border-radius: 1rem; height: auto"
+        >
+          <div
+            class="card-body p-5 text-center"
+            style="padding-bottom: 150 px; height: auto"
+          >
+            <div class="mb-md-5 mt-md-4 pb-5">
+              <h2 class="fw-bold mb-2 ">Login</h2>
+              <p class="text-white-50 ">
+                Please enter your username, user id and password!
+              </p>
+             
+              <div class="form-outline form-white mb-4" >
+                <label class="form-label" for="uid" style="font-size: 15px;">USERID</label>
+                <input
+                  type="text"
+                  id="userid"
+                  name="userid"
+                  formControlName = "userid"
+                  class="form-control form-control-lg"
+                  autocomplete="off"
+                />
+                <span    class="help-block" *ngIf = "!loginForm.get('userid').valid && loginForm.get('userid').touched" style ="color:rgb(112, 190, 112)">Enter a valid User ID!</span>
+                
+              </div>
+              <div class="form-outline form-white mb-4">
+                <label class="form-label" for="uname" style="font-size: 15px;">USERNAME</label>
+                <input
+                  type="text"
+                  id="uname"
+                  name="uname"
+                  formControlName = "uname"
+                  class="form-control form-control-lg"
+                  autocomplete="off"
+                />
+                <span    class="help-block" *ngIf = "!loginForm.get('uname').valid && loginForm.get('uname').touched" style ="color:rgb(112, 190, 112)">Enter a valid User Name!</span>
+                
+              </div>
+
+              <div class="form-outline form-white mb-4">
+                <label class="form-label" for="upassword" style="font-size: 15px;">PASSWORD</label>
+                <input
+                  type="password"
+                  id="upassword"
+                  name = "upassword"
+                  formControlName = "upassword"
+                  class="form-control form-control-lg"
+                  autocomplete="off"
+                />
+                <span    class="help-block" *ngIf = "!loginForm.get('upassword').valid && loginForm.get('upassword').touched" style ="color:rgb(112, 190, 112)">Enter a valid Password!</span>
+                
+              </div>
+              <div class="btn-toolbar text-center well"  style ="margin-top: 50px;">
+                <button class="btn btn-outline-dark btn-md px-5" type="submit" [disabled]="!loginForm.valid" >
+                    Login
+                  </button>
+                  <button class="btn btn-outline-dark btn-md px-5" style ="margin-left: 80px;" type="submit" (click)="reset()">
+                    Reset
+                  </button>
+              </div>
+
+             
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</form>
