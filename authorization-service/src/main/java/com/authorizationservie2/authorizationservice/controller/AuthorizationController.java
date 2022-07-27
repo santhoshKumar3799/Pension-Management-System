@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -29,13 +30,14 @@ public class AuthorizationController {
 	private JwtUserDetailsService jwtUserDetailsService;
 
 	/**
-	 * At this endpoint , this method generates token for valid login credentials
+	 * This endpoint is used to generate token for valid credentials
 	 * 
 	 * @param UserData
-	 * @return AuthResponse, HttpStatus
+	 * @return token , HttpStatus
 	 */
 
 	@PostMapping("/login")
+	@CrossOrigin
 	public ResponseEntity<?> login(@RequestBody UserData userlogincredentials) {
 		logger.info("START");
 		
@@ -64,7 +66,7 @@ public class AuthorizationController {
 	
 	
 	/**
-	 * At this endpoint , this method validates the token
+	 * This endpoint is used to validate the token
 	 * 
 	 * @param String token
 	 * @return AuthResponse, HttpStatus
@@ -72,6 +74,7 @@ public class AuthorizationController {
 	
 	
 	@GetMapping("/validate")
+	@CrossOrigin
 	public ResponseEntity<AuthorizationResponse> getTokenValidity(@RequestHeader("Authorization") String token) {
 		logger.info("START");
 		

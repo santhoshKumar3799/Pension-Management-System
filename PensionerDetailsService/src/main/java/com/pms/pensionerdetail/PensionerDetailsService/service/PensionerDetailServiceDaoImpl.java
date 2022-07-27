@@ -3,12 +3,13 @@ package com.pms.pensionerdetail.PensionerDetailsService.service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 
 
 import com.pms.pensionerdetail.PensionerDetailsService.Dao.PensionerDetailServiceDao;
+import com.pms.pensionerdetail.PensionerDetailsService.model.AuthResponse;
 import com.pms.pensionerdetail.PensionerDetailsService.restClients.AuthClient;
 
 /**
@@ -36,13 +37,18 @@ private static Logger logger = LoggerFactory.getLogger(PensionerDetailServiceDao
 		logger.info("START");
 
 		try {
-			authClient.getTokenValidity(token);
+			ResponseEntity<AuthResponse> res = authClient.getTokenValidity(token);
+			
+			if(res.getBody().isValid()==true) {
+				System.out.println(res);
+				return true;
+			}
 		} catch (RuntimeException e) {
 			
 			throw new Exception("Not Allowed");
 		}
 		logger.info("END");
-
-		return true;
+		return null;
+		
 	}
 }

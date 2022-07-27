@@ -27,15 +27,15 @@ public class JwtUserDetailsService implements UserDetailsService {
 
 	/**
 	 * Loads user from the database if it exists. After loading the details,
-	 * compares the given username from username in the DB.
+	 * compares the given userid from userid in the DB.
 	 * 
-	 * @param username
+	 * @param userid
 	 * @return UserDetails
 	 */
 
 	@SuppressWarnings("unchecked")
 	public UserDetails loadUserByUsername(String uid) {
-		/** fetching user by userName, if user is null the throw exception, otherwise
+		/** fetching user by uid, if user is null then throw exception, otherwise
 		 * return user
 		 */
 		logger.info("START");

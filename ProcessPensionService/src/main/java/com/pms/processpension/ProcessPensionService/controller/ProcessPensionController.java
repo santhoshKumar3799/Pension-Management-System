@@ -3,6 +3,7 @@ package com.pms.processpension.ProcessPensionService.controller;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
@@ -75,13 +76,14 @@ public class ProcessPensionController {
 
 	@PostMapping("/ProcessPension")
 	@ApiOperation(notes = "Returns the Pension Details", value = "Find the pension details")
+	@CrossOrigin
 	public PensionDetail getPensionDetail(
 			@RequestHeader(value = "Authorization", required = true) String requestTokenHeader,
 			@RequestBody PensionerInput pensionerInput)
 			throws AuthorizationException, PensionerDetailException, AadharNumberNotFound {
 		System.out.println("In process pension controller");
 		if(processPensionserviceDao.isSessionValid(requestTokenHeader)) {
-			System.out.println("Hlllo+++authorization suceess");
+			System.out.println("Authorization is  success");
 			return processPensionserviceDao.calculatePension(requestTokenHeader, pensionerInput);
 		}else
 		{

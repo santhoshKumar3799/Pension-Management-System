@@ -17,6 +17,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -88,23 +89,24 @@ public class PensionerDetailController {
 	}
 
 	/**
-	 * The method at this end point retrieves pensioner details based on Aadhaar
+	 * This endpoint is used to retrieve the pensioner details by using aadhaar
 	 * number
 	 * 
 	 * @param String
 	 *            token, aadhaar number
-	 * @return Pensioner
+	 * @return PensionerDetails
 	 * @throws Exception 
 	 */
 	@GetMapping("/PensionerDetailByAadhaar/{aadhaarNumber}")
 	@ApiOperation(value = "Provides the pensioner details", response = PensionerDetail.class)
+	@CrossOrigin
 	public PensionerDetail getPensionerDetailByAadhaar(@RequestHeader("Authorization") String token,
 			@PathVariable long aadhaarNumber) throws Exception {
 		
 		LOGGER.info("START");
 		
 		//if the token is valid
-		if (pensionerDetailServiceDao.isSessionValid(token)) {
+		if (token !=null && pensionerDetailServiceDao.isSessionValid(token)) {
 			
 			PensionerDetail pensionerDetail;
 			
