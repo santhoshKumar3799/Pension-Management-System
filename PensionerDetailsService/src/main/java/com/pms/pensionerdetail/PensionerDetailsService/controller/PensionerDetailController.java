@@ -17,6 +17,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,6 +28,7 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+//import com.authorizationservie2.authorizationservice.model.UserData;
 import com.opencsv.CSVReader;
 import com.opencsv.CSVWriter;
 import com.opencsv.exceptions.CsvException;
@@ -102,7 +105,7 @@ public class PensionerDetailController {
 	@GetMapping("/PensionerDetailByAadhaar")
 	@ApiOperation(value = "Provides the pensioner details", response = PensionerDetail.class)
 	
-	public PensionerDetail getPensionerDetailByAadhaar(@RequestHeader("Authorization") String token,
+	public ResponseEntity<?> getPensionerDetailByAadhaar(@RequestHeader("Authorization") String token,
 			@RequestParam(name="aadhaarNumber") long aadhaarNumber) throws Exception {
 		
 		LOGGER.info("START");
@@ -125,7 +128,12 @@ public class PensionerDetailController {
 					
 					
 					//return the pensioner detail
-					return pensionerDetail;
+					//return pensionerDetail;
+					return new ResponseEntity<PensionerDetail>(pensionerDetail, HttpStatus.OK);
+				}else {
+					LOGGER.info("END - Wrong aadhaar number");
+					
+					return new ResponseEntity<String>("Invalid aadhaar number", HttpStatus.FORBIDDEN);
 				}
 			}
 			LOGGER.info("END");

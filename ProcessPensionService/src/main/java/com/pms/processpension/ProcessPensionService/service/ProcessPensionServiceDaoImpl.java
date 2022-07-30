@@ -84,16 +84,17 @@ public class ProcessPensionServiceDaoImpl implements ProcessPensionServiceDao {
 			throw new AadharNumberNotFound("Aadhar Card Number is not Valid. Please check it and try again");
 		}
 		if(pensionerInput.getAadhaarNumber() == pensionerDetail.getAadhaarNumber() 
-				&& pensionerInput.getName().equalsIgnoreCase(pensionerDetail.getName()) 
-				&& pensionerInput.getPan().equalsIgnoreCase(pensionerDetail.getPan())) {
+//				&& pensionerInput.getName().equalsIgnoreCase(pensionerDetail.getName()) 
+//				&& pensionerInput.getPan().equalsIgnoreCase(pensionerDetail.getPan())
+				) {
 			double salary = pensionerDetail.getSalary();
 			double allowances = pensionerDetail.getAllowance();
 			double pensionAmount = 0;
-			if(pensionerInput.getPensionType().equalsIgnoreCase("Self pension"))
+			if(pensionerDetail.getPensionType().equalsIgnoreCase("Self pension"))
 			{
 				pensionAmount = 0.8*salary + allowances;
 				
-			}else if(pensionerInput.getPensionType().equalsIgnoreCase("Family pension"))
+			}else if(pensionerDetail.getPensionType().equalsIgnoreCase("Family pension"))
 			{
 				pensionAmount = 0.5 * salary + allowances;
 			}
