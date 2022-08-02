@@ -32,7 +32,5 @@ public class ExceptionDetails {
 		this.message = message;
 	}
 	
-	public ExceptionDetails() {
-		
-	}
+	
 }

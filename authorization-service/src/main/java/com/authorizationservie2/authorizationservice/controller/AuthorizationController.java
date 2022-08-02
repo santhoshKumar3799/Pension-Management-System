@@ -81,7 +81,7 @@ public class AuthorizationController {
 		//create a instance of authorization response bean
 		AuthorizationResponse res = new AuthorizationResponse();
 		//if the token is null
-		if (token == null) {
+		if (token.isEmpty()) {
 			res.setValid(false);
 			
 			logger.info("END - Null Token");
