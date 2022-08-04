@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-pensioner-detail-by-aadhaar',
@@ -8,7 +9,9 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class PensionerDetailByAadhaarComponent implements OnInit {
   aadhaarForm:FormGroup;
-  constructor() { }
+
+  aadhaarNum ;
+  constructor(private router:Router) { }
 
   ngOnInit(): void {
     this.aadhaarForm = new FormGroup({
@@ -18,6 +21,10 @@ export class PensionerDetailByAadhaarComponent implements OnInit {
 
   onSubmit(){
     console.log('submitted');
+
+    this.aadhaarNum = this.aadhaarForm.get('aadhaar').value;
+    console.log(this.aadhaarNum);
+    this.router.navigate(["pensionerDetailInfo", this.aadhaarNum]);
   }
 
   reset(){

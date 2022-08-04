@@ -16,9 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.authorizationservie2.authorizationservice.jwtutilservices.JwtUserDetailsService;
 import com.authorizationservie2.authorizationservice.jwtutilservices.TokenManager;
-import com.authorizationservie2.authorizationservice.model.AuthorizationResponse;
+//import com.authorizationservie2.authorizationservice.model.AuthorizationResponse;
 import com.authorizationservie2.authorizationservice.model.UserData;
-
 
 @RestController
 public class AuthorizationController {
@@ -40,77 +39,68 @@ public class AuthorizationController {
 	@CrossOrigin
 	public ResponseEntity<?> login(@RequestBody UserData userlogincredentials) {
 		logger.info("START");
-		
-		//load the user from database 
+
+		// load the user from database
 		final UserDetails userdetails = jwtUserDetailsService.loadUserByUsername(userlogincredentials.getUserid());
 		String uid = "";
 		String generateToken = "";
-		//if the loaded user password is same as the entered password 
+		// if the loaded user password is same as the entered password
 		if (userdetails.getPassword().equals(userlogincredentials.getUpassword())) {
 			uid = userlogincredentials.getUserid();
 			generateToken = tokenManager.generateJwtToken(userdetails);
-			
+
 			logger.info(generateToken);
 			logger.info("END");
-			
+
 			return new ResponseEntity<UserData>(new UserData(uid, null, null, generateToken), HttpStatus.OK);
-		}//if the loaded user password is not same as the entered password  
+		} // if the loaded user password is not same as the entered password
 		else {
 			logger.info("END - Wrong credentials");
-			
+
 			return new ResponseEntity<String>("Not Accesible", HttpStatus.FORBIDDEN);
 		}
 
 	}
-	
-	
-	
+
 	/**
 	 * This endpoint is used to validate the token
 	 * 
-	 * @param String token
+	 * @param String
+	 *            token
 	 * @return AuthResponse, HttpStatus
 	 */
-	
-	
+
 	@GetMapping("/validate")
 	@CrossOrigin
-	public ResponseEntity<AuthorizationResponse> getTokenValidity(@RequestHeader("Authorization") String token) {
+	public Boolean getTokenValidity(@RequestHeader("Authorization") String token) {
 		logger.info("START");
-		
-		//create a instance of authorization response bean
-		AuthorizationResponse res = new AuthorizationResponse();
-		//if the token is null
+
+		// create a instance of authorization response bean
+//		AuthorizationResponse res = new AuthorizationResponse();
+		// if the token is null
 		if (token.isEmpty()) {
-			res.setValid(false);
-			
+
 			logger.info("END - Null Token");
-			
-			return new ResponseEntity<AuthorizationResponse>(res, HttpStatus.FORBIDDEN);
+			return false;
+
 		}
-		//if the token is not null
+		// if the token is not null
 		else {
 			String token1 = token.substring(7);
-			//if the token is valid 
+			// if the token is valid
 			if (tokenManager.validateJwtToken(token1)) {
-				res.setUid(tokenManager.extractUsername(token1));
-				res.setValid(true);
-				res.setRole("admin");
+				String username = tokenManager.extractUsername(token1);
+				return true;
 			}
-			//if the token is invalid
+			// if the token is invalid
 			else {
-				res.setValid(false);
-				
+
 				logger.info("END - Token expired");
-				
-				return new ResponseEntity<AuthorizationResponse>(res, HttpStatus.FORBIDDEN);
+
+				return false;
 			}
 		}
-		
-		logger.info("END - Token accepted");
-		
-		return new ResponseEntity<AuthorizationResponse>(res, HttpStatus.OK);
+
 	}
-	
 
 }

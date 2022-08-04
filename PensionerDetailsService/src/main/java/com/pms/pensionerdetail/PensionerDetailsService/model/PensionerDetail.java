@@ -25,7 +25,7 @@ public class PensionerDetail {
 	private double salary;
 	private double allowance;
 	private String pensionType;
-	private Long aadhaarNumber;
+	private long aadhaarNumber;
 	private BankDetails bank;
 	public String getName() {
 		return name;
@@ -70,14 +70,14 @@ public class PensionerDetail {
 		this.bank = bank;
 	}
 	
-	public Long getAadhaarNumber() {
+	public long getAadhaarNumber() {
 		return aadhaarNumber;
 	}
-	public void setAadhaarNumber(Long aadhaarNumber) {
+	public void setAadhaarNumber(long aadhaarNumber) {
 		this.aadhaarNumber = aadhaarNumber;
 	}
 	public PensionerDetail(String name, Date dateOfBirth, String pan, double salary, double allowance,
-			String pensionType,Long aadhaarNumber, BankDetails bank) {
+			String pensionType,long aadhaarNumber, BankDetails bank) {
 		super();
 		this.name = name;
 		this.dateOfBirth = dateOfBirth;

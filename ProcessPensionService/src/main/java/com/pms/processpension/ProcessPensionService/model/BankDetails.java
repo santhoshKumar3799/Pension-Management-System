@@ -4,6 +4,7 @@ public class BankDetails {
 	private String bankName;
 	private long accountNumber;
 	private String bankType;
+	
 	public String getBankName() {
 		return bankName;
 	}

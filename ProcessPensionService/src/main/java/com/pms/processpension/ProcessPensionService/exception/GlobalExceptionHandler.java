@@ -32,13 +32,13 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler{
 		return new ResponseEntity<ExceptionDetails>(exceptionDetail, HttpStatus.BAD_REQUEST);
 	}
 	
-	@ExceptionHandler(PensionerDetailException.class)
-	public ResponseEntity<ExceptionDetails> handleSpecialistDetailNotFoundException(PensionerDetailException p){
-		
-		ExceptionDetails exceptionDetail = new ExceptionDetails(LocalDateTime.now(), HttpStatus.NOT_FOUND, p.getMessage());
-		logger.error(p.getMessage());
-		return new ResponseEntity<ExceptionDetails>(exceptionDetail, HttpStatus.NOT_FOUND);
-	}
+//	@ExceptionHandler(PensionerDetailException.class)
+//	public ResponseEntity<ExceptionDetails> handleSpecialistDetailNotFoundException(PensionerDetailException p){
+//		
+//		ExceptionDetails exceptionDetail = new ExceptionDetails(LocalDateTime.now(), HttpStatus.NOT_FOUND, p.getMessage());
+//		logger.error(p.getMessage());
+//		return new ResponseEntity<ExceptionDetails>(exceptionDetail, HttpStatus.NOT_FOUND);
+//	}
 	
 	@ExceptionHandler(AadharNumberNotFound.class)
 	public ResponseEntity<ExceptionDetails> handleMissingRequestHeaderException(AadharNumberNotFound ex){
@@ -47,12 +47,12 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler{
 		return new ResponseEntity<ExceptionDetails>(exceptionDetail, HttpStatus.NOT_FOUND);
 	}
 	
-	@ExceptionHandler(FeignException.class)
-    public ResponseEntity<ExceptionDetails> handleFeignStatusException(FeignException ex, HttpServletResponse response) {
-		logger.error("handles by handleFeignStatusException");
-		ExceptionDetails exceptionDetail = new ExceptionDetails(LocalDateTime.now(), HttpStatus.BAD_REQUEST, ex.getMessage());
-		logger.error(ex.getMessage());
-		return new ResponseEntity<ExceptionDetails>(exceptionDetail, HttpStatus.BAD_REQUEST);
-    }
+//	@ExceptionHandler(FeignException.class)
+//    public ResponseEntity<ExceptionDetails> handleFeignStatusException(FeignException ex, HttpServletResponse response) {
+//		logger.error("handles by handleFeignStatusException");
+//		ExceptionDetails exceptionDetail = new ExceptionDetails(LocalDateTime.now(), HttpStatus.BAD_REQUEST, ex.getMessage());
+//		logger.error(ex.getMessage());
+//		return new ResponseEntity<ExceptionDetails>(exceptionDetail, HttpStatus.BAD_REQUEST);
+//    }
 
 }

@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 import com.pms.processpension.ProcessPensionService.Dao.ProcessPensionServiceDao;
 import com.pms.processpension.ProcessPensionService.exception.AadharNumberNotFound;
 import com.pms.processpension.ProcessPensionService.exception.AuthorizationException;
-import com.pms.processpension.ProcessPensionService.exception.PensionerDetailException;
+//import com.pms.processpension.ProcessPensionService.exception.PensionerDetailException;
 import com.pms.processpension.ProcessPensionService.model.PensionDetail;
 import com.pms.processpension.ProcessPensionService.model.PensionerDetail;
 import com.pms.processpension.ProcessPensionService.model.PensionerInput;
@@ -30,8 +30,8 @@ public class ProcessPensionServiceDaoImpl implements ProcessPensionServiceDao {
 	@Autowired
 	private PensionerDetailClient pensionerDetailClient;
 
-	@Autowired
-	private AuthClient authClient;
+//	@Autowired
+//	private AuthClient authClient;
 
 	private static final Map<String, Double> banks = createMap();
 
@@ -67,7 +67,7 @@ public class ProcessPensionServiceDaoImpl implements ProcessPensionServiceDao {
 	
 	
 	public PensionDetail calculatePension(String token, PensionerInput pensionerInput) 
-			throws  PensionerDetailException, AuthorizationException, AadharNumberNotFound {
+			throws   AuthorizationException, AadharNumberNotFound {
 		
 		logger.info("START");
 		
@@ -80,7 +80,7 @@ public class ProcessPensionServiceDaoImpl implements ProcessPensionServiceDao {
 					pensionerInput.getAadhaarNumber());
 			
 			System.out.println("pensionerDetail" +pensionerDetail);
-		}catch(AadharNumberNotFound e) {
+		}catch(Exception e) {
 			throw new AadharNumberNotFound("Aadhar Card Number is not Valid. Please check it and try again");
 		}
 		if(pensionerInput.getAadhaarNumber() == pensionerDetail.getAadhaarNumber() 
@@ -107,31 +107,31 @@ public class ProcessPensionServiceDaoImpl implements ProcessPensionServiceDao {
 		}
 		else
 		{
-			throw new PensionerDetailException("Invalid pensioner detail provided, please provide valid detail.");
+			throw new AadharNumberNotFound("Aadhar Card Number is not Valid. Please check it and try again");
 		}
 	}		
 	
 
-	/**
-	 * This method validates token
-	 * 
-	 * @param String
-	 *            token
-	 * @return Boolean
-	 */
-	public Boolean isSessionValid(String token) {
-		logger.info("START");
-
-		try {
-			authClient.getValidity(token);
-		} catch (Exception e) {
-			logger.info("EXCEPTION");
-
-			return false;
-		}
-		logger.info("END");
-
-		return true;
-	}
+//	/**
+//	 * This method validates token
+//	 * 
+//	 * @param String
+//	 *            token
+//	 * @return Boolean
+//	 */
+//	public Boolean isSessionValid(String token) {
+//		logger.info("START");
+//
+//		try {
+//			authClient.getValidity(token);
+//		} catch (Exception e) {
+//			logger.info("EXCEPTION");
+//
+//			return false;
+//		}
+//		logger.info("END");
+//
+//		return true;
+//	}
 
 }

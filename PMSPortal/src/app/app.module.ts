@@ -11,6 +11,9 @@ import { HttpClient, HttpClientModule ,HTTP_INTERCEPTORS} from '@angular/common/
 import { ServiceService } from './service/service.service';
 import { PensionerDetailByAadhaarComponent } from './pensioner-detail-by-aadhaar/pensioner-detail-by-aadhaar.component';
 import { CalculatePensionAmountComponent } from './calculate-pension-amount/calculate-pension-amount.component';
+import { PensionerDetailComponent } from './pensioner-detail-by-aadhaar/pensioner-detail/pensioner-detail.component';
+import { AuthInterceptorInterceptor } from './service/auth-interceptor.interceptor';
+import { PensionDetailComponent } from './pension-detail/pension-detail.component';
 
 
 
@@ -23,6 +26,8 @@ import { CalculatePensionAmountComponent } from './calculate-pension-amount/calc
     DashboardComponent,
     PensionerDetailByAadhaarComponent,
     CalculatePensionAmountComponent,
+    PensionerDetailComponent,
+    PensionDetailComponent,
    
   ],
   imports: [
@@ -31,7 +36,7 @@ import { CalculatePensionAmountComponent } from './calculate-pension-amount/calc
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [ServiceService],
+  providers: [ServiceService,{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorInterceptor, multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,0 +1,12 @@
+.nav-gradient-custom {
+    /* fallback for old browsers */
+    background: #e20c5e;
+    
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: -webkit-linear-gradient(to right, #ff512f, #dd2476);
+    
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: linear-gradient(to right, #141e30, #243b55)
+
+    
+    }

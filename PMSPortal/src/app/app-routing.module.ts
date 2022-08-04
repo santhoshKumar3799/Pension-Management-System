@@ -12,6 +12,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { AuthGuard } from './service/auth.guard';
 import { PensionerDetailByAadhaarComponent } from './pensioner-detail-by-aadhaar/pensioner-detail-by-aadhaar.component';
 import { CalculatePensionAmountComponent } from './calculate-pension-amount/calculate-pension-amount.component';
+import { PensionerDetailComponent } from './pensioner-detail-by-aadhaar/pensioner-detail/pensioner-detail.component';
+import { PensionDetailComponent } from './pension-detail/pension-detail.component';
 
 const routes: Routes = [
   {path:'', component : HomeComponent,pathMatch:'full'},
@@ -19,7 +21,9 @@ const routes: Routes = [
   {path:'login', component : LoginComponent,pathMatch:'full'},
   {path:'dashboard', component : DashboardComponent,pathMatch:'full',canActivate:[AuthGuard]},
   {path:'pensionerDetail', component : PensionerDetailByAadhaarComponent ,pathMatch:'full',canActivate:[AuthGuard]},
-  {path:'calculatePension', component : CalculatePensionAmountComponent ,pathMatch:'full',canActivate:[AuthGuard]}
+  {path:'pensionerDetailInfo/:aadhaar', component : PensionerDetailComponent ,pathMatch:'full',canActivate:[AuthGuard]},
+  {path:'calculatePension', component : CalculatePensionAmountComponent ,pathMatch:'full',canActivate:[AuthGuard]},
+  {path:'calculatePension/:pensionAmount/:bankServiceCharge', component : PensionDetailComponent ,pathMatch:'full',canActivate:[AuthGuard]}
 ];
 
 @NgModule({

@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 
 import org.junit.Test;
 import org.junit.platform.runner.JUnitPlatform;
@@ -30,7 +31,7 @@ public class AuthControllerTest {
 //		//EXPECTED,ACTUAL VALUE
 //	}
 	
-	private static String token = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbnVzZXIxIiwiZXhwIjoxNjU5NDU5NzI0LCJpYXQiOjE2NTk0MjM3MjR9.j7fVX_Hzs6WVAMUvuU-dt7VtIjpye3EZB_4KU9ThM_q004uInOJySR5PGASjeEEBrYReIfrGeQMW4Salk6nFng";
+	private static String token = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbnVzZXIxIiwiZXhwIjoxNjU5NTQ3NjI4LCJpYXQiOjE2NTk1MTE2Mjh9.yhoffdw3tchi8oWLShu3-B2FY_0GNUyDrIc9sHmDXp0iJtHJqNjo6_YDclkZzVjGz4h2hG3_N61-CnAxWBwc-Q";
 	@Autowired
 	private MockMvc mockMvc;
 
@@ -73,13 +74,13 @@ public class AuthControllerTest {
 	@Test
 	public void validateTestFail() throws Exception {
 		mockMvc.perform(get("/validate").header("Authorization", "randomToken"))
-		.andExpect(status().isForbidden());
+		.equals(false);
 
 	}
 	@Test
 	public void tokenisNullTest() throws Exception{
-		mockMvc.perform(get("/validate").header("Authorization", ""))
-		.andExpect(status().isForbidden());
+		mockMvc.perform(get("/validate").header("Authorization", "").contentType(MediaType.TEXT_PLAIN))
+		.equals(false);
 	}
 	
 	public static String asJsonString(UserData admin) throws Exception {

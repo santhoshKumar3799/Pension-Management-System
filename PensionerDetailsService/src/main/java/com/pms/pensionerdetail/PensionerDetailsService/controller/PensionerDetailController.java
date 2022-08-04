@@ -35,9 +35,10 @@ import com.opencsv.exceptions.CsvException;
 import com.opencsv.exceptions.CsvValidationException;
 import com.pms.pensionerdetail.PensionerDetailsService.PensionerDetailsServiceApplication;
 
-import com.pms.pensionerdetail.PensionerDetailsService.Dao.PensionerDetailServiceDao;
+//import com.pms.pensionerdetail.PensionerDetailsService.Dao.PensionerDetailServiceDao;
 import com.pms.pensionerdetail.PensionerDetailsService.model.BankDetails;
 import com.pms.pensionerdetail.PensionerDetailsService.model.PensionerDetail;
+import com.pms.pensionerdetail.PensionerDetailsService.restClients.AuthClient;
 
 import io.swagger.annotations.ApiOperation;
 
@@ -48,28 +49,39 @@ public class PensionerDetailController {
 	// creating a empty list of Pensioner type
 	private static List<PensionerDetail> pensionersList = new ArrayList<PensionerDetail>();
 
+//	@Autowired
+//	private PensionerDetailServiceDao pensionerDetailServiceDao;
+	
 	@Autowired
-	private PensionerDetailServiceDao pensionerDetailServiceDao;
+	private AuthClient authClient;
 
 	/**
 	 * This method is used to load CSV data on start up
+	 * @throws ParseException 
+	 * @throws IOException 
+	 * @throws NumberFormatException 
+	 * @throws CsvValidationException 
 	 */
 
 	@PostConstruct
-	public void loadPensionerData() {
+	public void loadPensionerData() throws CsvValidationException, NumberFormatException, IOException, ParseException {
 		LOGGER.info("START");
 		readCsv();
 	}
 
 	/**
 	 * This method reads data from CSV file
+	 * @throws IOException 
+	 * @throws CsvValidationException 
+	 * @throws ParseException 
+	 * @throws NumberFormatException 
 	 * 
 	 */
-	public static void readCsv() {
+	public static void readCsv() throws IOException, CsvValidationException, NumberFormatException, ParseException {
 		PensionerDetailController.pensionersList.clear();
 
 		Resource resource = new ClassPathResource("details2.csv");
-		try {
+		
 			File file = resource.getFile();
 			CSVReader reader = new CSVReader(new FileReader(file));
 
@@ -85,10 +97,10 @@ public class PensionerDetailController {
 						pensionerString[5],Long.parseLong(pensionerString[6]), new BankDetails(pensionerString[7],Long.parseLong(pensionerString[8]) , pensionerString[9]));
 				PensionerDetailController.pensionersList.add(pensionerDetail);
 			}
+			
+//			reader.close();
 
-		} catch (CsvValidationException | NumberFormatException | IOException | ParseException e) {
-			LOGGER.info("EXCEPTION");
-		}
+		
 		LOGGER.info("END");
 	}
 
@@ -111,7 +123,7 @@ public class PensionerDetailController {
 		LOGGER.info("START");
 		
 		//if the token is valid
-		if (token !=null && pensionerDetailServiceDao.isSessionValid(token)) {
+		if (authClient.getTokenValidity(token)) {
 			
 			PensionerDetail pensionerDetail;
 			
@@ -138,10 +150,11 @@ public class PensionerDetailController {
 			}
 			LOGGER.info("END");
 			return null;
-		}
+		}else {
 		LOGGER.info("END");
 
-		return null;
+		return new ResponseEntity<String>("Invalid token", HttpStatus.FORBIDDEN);
+		}
 	}
 	
 	

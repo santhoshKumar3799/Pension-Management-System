@@ -1,4 +1,4 @@
-<form [formGroup] = "loginForm" (ngSubmit) = "onSubmit()">
+<!-- <form [formGroup] = "loginForm" (ngSubmit) = "onSubmit()">
 <section class="vh-100 gradient-custom">
   <div class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
@@ -75,4 +75,112 @@
     </div>
   </div>
 </section>
+</form> -->
+
+
+
+
+<!-- different login form look -->
+<div class="px-4 py-5  text-center gradient-custom" style="height:100%;">
+<form [formGroup]="loginForm" (ngSubmit) = "onSubmit()">
+  <div class="container mt-5 mb-5">
+    <div class="row d-flex align-items-center justify-content-center">
+      <div class="col-md-6">
+        <div class="card px-5 py-5">
+          <span class="circle"><i class="fa fa-check"></i></span>
+
+          <h2 class="mt-3">Login <br /></h2>
+          <small class="mt-2 text-muted">
+            Please enter your username, user id and password!
+          </small>
+
+          <div class="form-input">
+            <i class="fa fa-envelope"></i>
+            <label class="form-label" for="uid" style="font-size: 15px;">User ID</label>
+                <input
+                  type="text"
+                  id="userid"
+                  name="userid"
+                  formControlName = "userid"
+                  class="form-control form-control-lg"
+                  autocomplete="off"
+                  placeholder="user ID"
+                />
+                <span    class="help-block" *ngIf = "!loginForm.get('userid').valid && loginForm.get('userid').touched" 
+                style ="color:rgb(123, 123, 123)">Enter a valid User ID!</span>
+          </div>
+
+          <div class="form-input">
+            <i class="fa fa-user"></i>
+            <label class="form-label" for="uname" style="font-size: 15px;">Username</label>
+                <input
+                  type="text"
+                  id="uname"
+                  name="uname"
+                  formControlName = "uname"
+                  class="form-control form-control-lg"
+                  autocomplete="off"
+                  placeholder="Username"
+                />
+                <span    class="help-block" *ngIf = "!loginForm.get('uname').valid && loginForm.get('uname').touched" 
+                style ="color:rgb(123, 123, 123)">Enter a valid User Name!</span>
+          </div>
+
+          <div class="form-input">
+            <i class="fa fa-lock"></i>
+            <label class="form-label" for="upassword" style="font-size: 15px;">Password</label>
+                <input
+                  type="password"
+                  id="upassword"
+                  name = "upassword"
+                  formControlName = "upassword"
+                  class="form-control "
+                  autocomplete="off"
+                  placeholder="Password"
+                />
+                <span    class="help-block" *ngIf = "!loginForm.get('upassword').valid && loginForm.get('upassword').touched" 
+                style ="color:rgb(123, 123, 123)">Enter a valid Password!</span>
+          </div>
+          <br />
+          <!-- <button class="btn btn-dark mt-4 signup">Start coding now</button> -->
+          <!-- <div class="btn-toolbar text-center well"  style ="margin:auto;">
+            <div class="container">
+              <button class="btn btn-outline-dark btn-md px-5" type="submit" style="width:auto ;margin: auto;" [disabled]="!loginForm.valid">
+                Submit
+              </button>
+            </div>
+            
+            <div class="container">
+              <button class="btn btn-outline-dark btn-md px-5 " type="reset" style="width:auto ;margin: auto;"  (click)="reset()" style="width:150px" >
+                Reset
+              </button>
+            </div>
+            
+          </div> -->
+          <div class="form-outline  mb-4">
+            <table class="table ">
+              <tbody>
+                <tr class="table">
+                  <td class="column">
+                    <button class="btn btn-outline btn-md px-5 gradient-custom" type="submit"  [disabled]="!loginForm.valid">
+                      Submit
+                    </button>
+                  </td>
+                  <td style="padding-right: 0px;margin-left: 6px;">
+                    <button class="btn btn-outline btn-md px-5 gradient-custom" type="reset" style="padding-right: 0px;margin-left: 6px;"  (click)="reset()" >
+                      Reset
+                    </button>
+                  </td>  
+              </tr>
+              
+              </tbody>
+            </table>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </div>
 </form>
+</div>
+

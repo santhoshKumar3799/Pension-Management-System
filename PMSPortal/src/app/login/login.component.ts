@@ -10,8 +10,10 @@ import Swal from 'sweetalert2';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  
+  submitted:boolean;
+  authError:boolean;
   loginForm:FormGroup;
+  blankCredentials:boolean;
 
   constructor(private router:Router, private service: ServiceService ) { }
 
@@ -33,6 +35,7 @@ export class LoginComponent implements OnInit {
 
   onSubmit(){
     console.log("form submitted");
+    this.submitted=true;
     
     this.userData.userid = this.loginForm.get('userid').value;
     this.userData.uname = this.loginForm.get('uname').value;
@@ -50,12 +53,14 @@ export class LoginComponent implements OnInit {
             window.location.href="/dashboard";
           },
         error =>{
+          this.authError = true;
           console.log("error");
           console.log(error);
           Swal.fire('Invalid!','Wrong username or password','error'); 
           
         })
         }else{
+          this.blankCredentials= true;
           console.log("empty fields");
           Swal.fire('Empty Feilds!','Please Enter Credentials');
         }

@@ -1,1 +1,138 @@
-<p>calculate-pension-amount works!</p>
+<div class="px-4 py-5  text-center gradient-custom" style="height:100%;">
+<form [formGroup]="calculatePensionForm" (ngSubmit) = "onSubmit()">
+  <div class="container mt-5 mb-5">
+    <div class="row d-flex align-items-center justify-content-center">
+      <div class="col-md-6">
+        <div class="card px-5 py-5">
+          <span class="circle"><i class="fa fa-check"></i></span>
+
+          <h2 class="mt-3">Enter Aadhaar <br /></h2>
+          <small class="mt-2 text-muted"
+            >Please enter the aadhaar number in the below form to get the
+            calculated pension amount</small
+          ><br>
+
+          <div class="form-input">
+            <i class="fa fa-envelope"></i>
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Aadhaar Number"
+              name="aadhaarNumber"
+              id="aadhaarNumber"
+              formControlName="aadhaarNumber"
+            />
+            <small
+              class="mt-2 text-muted"
+              *ngIf="
+                !calculatePensionForm.get('aadhaarNumber').valid &&
+                calculatePensionForm.get('aadhaarNumber').touched
+              "
+              >Enter a valid Aadhar Number!</small
+            >
+          </div>
+
+          <!-- <div class="form-input">
+            <i class="fa fa-user"></i>
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Name"
+              name="name"
+              id="name"
+              formControlName="name"
+            /><small
+            class="mt-2 text-muted"
+            *ngIf="
+              !calculatePensionForm.get('name').valid &&
+              calculatePensionForm.get('name').touched
+            "
+            > Name cannot be empty!</small
+          >
+          </div>
+
+          <div class="form-input">
+            <i class="fa fa-lock"></i>
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Date Of Birth"
+              name="dateOfBirth"
+              id="dateOfBirth"
+              formControlName="dateOfBirth"
+            /><small
+            class="mt-2 text-muted"
+            *ngIf="
+              !calculatePensionForm.get('dateOfBirth').valid &&
+              calculatePensionForm.get('dateOfBirth').touched
+            "
+            > DOB cannot be empty!</small>
+          </div>
+
+          <div class="form-input">
+            <i class="fa fa-lock"></i>
+            <input
+              type="text"
+              class="form-control"
+              placeholder="PAN"
+              name="pan"
+              id="pan"
+              formControlName="pan"
+            />
+            <small
+            class="mt-2 text-muted"
+            *ngIf="
+              !calculatePensionForm.get('pan').valid &&
+              calculatePensionForm.get('pan').touched
+            "
+            > PAN cannot be empty!</small>
+          </div>
+          <div class="form-input">
+            <i class="fa fa-lock"></i>
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Pension Type"
+              name="pensionType"
+              id="pensionType"
+              formControlName="pensionType"
+            />
+            <small
+            class="mt-2 text-muted"
+            *ngIf="
+              !calculatePensionForm.get('pensionType').valid &&
+              calculatePensionForm.get('pensionType').touched
+            "
+            > Pension Type  cannot be empty!</small>
+          </div> -->
+          <br /> 
+          <div class="form-outline  mb-4">
+            <table class="table ">
+              <tbody>
+                <tr class="table">
+                  <td class="column">
+                    <button class="btn btn-outline btn-md px-5 gradient-custom" type="submit"  [disabled]="!calculatePensionForm.valid">
+                      Submit
+                    </button>
+                  </td>
+                  <td style="padding-right: 0px;margin-left: 6px;">
+                    <button class="btn btn-outline btn-md px-5 gradient-custom" type="reset" style="padding-right: 0px;margin-left: 6px;"  (click)="reset()" >
+                      Reset
+                    </button>
+                  </td>  
+              </tr>
+              
+              </tbody>
+            </table>
+          </div>
+
+          <!-- <button class="btn btn-dark mt-4 signup">Start coding now</button>
+          <button class="btn btn-outline-dark btn-md px-5" type="submit">
+            Submit
+          </button> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+</div>

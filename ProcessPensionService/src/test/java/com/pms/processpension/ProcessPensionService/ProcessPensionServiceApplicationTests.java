@@ -1,13 +1,22 @@
 package com.pms.processpension.ProcessPensionService;
 
-import org.junit.jupiter.api.Test;
+
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
+
+
 
 @SpringBootTest
-class ProcessPensionServiceApplicationTests {
+@AutoConfigureMockMvc
+@RunWith(SpringRunner.class)
+public class ProcessPensionServiceApplicationTests {
 
 	@Test
-	void contextLoads() {
+	public void main() {
+		ProcessPensionServiceApplication.main(new String[] {});
 	}
 
 }

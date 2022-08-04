@@ -50,5 +50,11 @@ public class ExceptionDetails {
 			this.status = status;
 			this.message = message;
 		}
+
+
+		public ExceptionDetails() {
+			
+		}
+		
 	
 }

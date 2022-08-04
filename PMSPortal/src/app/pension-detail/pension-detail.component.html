@@ -1,0 +1,55 @@
+<div class="px-4 py-5  text-center gradient-custom" style="height:100%;">
+<div class="container mt-5 mb-5 ">
+    <div class="row d-flex align-items-center justify-content-center gradient-custom">
+      <div class="col-md-6">
+        <div class="card px-5 py-5">
+          <span class="circle"><i class="fa fa-check"></i></span>
+
+          <h5 class="mt-3">Pension Detail <br /></h5>
+          <small class="mt-2 text-muted"
+            >please find the pension detail below for the user detail entered before</small>
+
+          <div class="form-input">
+            <i class="fa fa-envelope"></i>
+            <label style="margin-bottom: 8px;">Pension Amount</label><br>
+            <input
+              type="text "
+              class="form-control"
+              readonly
+              value = "{{this.pensionDetail.pensionAmount}}"
+            />
+          </div>
+
+          <div class="form-input">
+            <i class="fa fa-user"></i>
+            <label style="margin-bottom: 8px;">Bank Service Charge</label><br>
+            <input
+              type="text"
+              class="form-control"
+              readonly
+              value = "{{this.pensionDetail.bankServiceCharge}}"
+            />
+          </div>
+
+          <div class="form-outline  mb-4">
+            <table class="table ">
+              <tbody>
+                <tr class="table">
+                  <td style="padding-right: 0px;margin-left: 6px;">
+                    <button class="btn btn-outline btn-md px-5 gradient-custom" type="reset" style="padding-right: 0px;margin-left: 6px;"  routerLink="/dashboard" >
+                      Back to dashboard
+                    </button>
+                  </td>  
+              </tr>
+              
+              </tbody>
+            </table>
+          </div>
+
+         
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+  

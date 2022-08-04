@@ -13,9 +13,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.pms.processpension.ProcessPensionService.Dao.ProcessPensionServiceDao;
 import com.pms.processpension.ProcessPensionService.exception.AadharNumberNotFound;
 import com.pms.processpension.ProcessPensionService.exception.AuthorizationException;
-import com.pms.processpension.ProcessPensionService.exception.PensionerDetailException;
+//import com.pms.processpension.ProcessPensionService.exception.PensionerDetailException;
 import com.pms.processpension.ProcessPensionService.model.PensionDetail;
 import com.pms.processpension.ProcessPensionService.model.PensionerInput;
+import com.pms.processpension.ProcessPensionService.restClients.AuthClient;
 import com.pms.processpension.ProcessPensionService.restClients.PensionerDetailClient;
 
 import io.swagger.annotations.ApiOperation;
@@ -29,6 +30,9 @@ public class ProcessPensionController {
 
 	@Autowired
 	PensionerDetailClient pensionerDetailClient;
+	
+	@Autowired
+	private AuthClient authClient;
 
 	/**
 	 * The method at this end point calculates pension amount,and bank service
@@ -80,9 +84,9 @@ public class ProcessPensionController {
 	public PensionDetail getPensionDetail(
 			@RequestHeader(value = "Authorization", required = true) String requestTokenHeader,
 			@RequestBody PensionerInput pensionerInput)
-			throws AuthorizationException, PensionerDetailException, AadharNumberNotFound {
+			throws AuthorizationException, AadharNumberNotFound {
 		System.out.println("In process pension controller");
-		if(processPensionserviceDao.isSessionValid(requestTokenHeader)) {
+		if(authClient.getTokenValidity(requestTokenHeader)) {
 			System.out.println("Authorization is  success");
 			return processPensionserviceDao.calculatePension(requestTokenHeader, pensionerInput);
 		}else

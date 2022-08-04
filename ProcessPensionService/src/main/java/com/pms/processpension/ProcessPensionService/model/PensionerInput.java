@@ -49,7 +49,6 @@ public class PensionerInput {
 //		this.pensionType = pensionType;
 //	}
 	public PensionerInput(long aadhaarNumber) {
-		super();
 		this.aadhaarNumber = aadhaarNumber;
 //		this.name = name;
 //		this.dateOfBirth = dateOfBirth;
