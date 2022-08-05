@@ -1,7 +1,7 @@
 package com.pms.pensionerdetail.PensionerDetailsService;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.when;
+
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -10,19 +10,18 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.ResultActions;
+
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import java.util.ArrayList;
+
 import java.util.List;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
+
 import com.pms.pensionerdetail.PensionerDetailsService.controller.PensionerDetailController;
 import com.pms.pensionerdetail.PensionerDetailsService.model.PensionerDetail;
 
@@ -30,7 +29,7 @@ import com.pms.pensionerdetail.PensionerDetailsService.model.PensionerDetail;
 @AutoConfigureMockMvc
 @RunWith(SpringRunner.class)
 public class PensionDetailControllerTests {
-	private static String token = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbnVzZXIxIiwiZXhwIjoxNjU5NTQ5NzU0LCJpYXQiOjE2NTk1MTM3NTR9.91I2LN3WiFdJHLrUiZQ0O8vkHaHbnR7Dl231lCFfMQuNO-iYtWknds6zefQaIcBbH1WJ2oTWmFSKdcHZh45mCA";
+	private static String token = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbnVzZXIxIiwiZXhwIjoxNjU5NzIwNjgzLCJpYXQiOjE2NTk2ODQ2ODN9.3YZuVblJvHz_RW6thX3ffgmrmeS2RnHr1IJmIKDIJzNkWvvNP7e9AEfE7AvNKfAak4howuUOuiW72efIcI4ruQ";
 
 	@Autowired
 	private MockMvc mockMvc;

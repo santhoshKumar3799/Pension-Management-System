@@ -2,7 +2,9 @@ package com.pms.processpension.ProcessPensionService.service;
 
 
 import java.util.HashMap;
+
 import java.util.Map;
+
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,11 +15,13 @@ import org.springframework.stereotype.Service;
 import com.pms.processpension.ProcessPensionService.Dao.ProcessPensionServiceDao;
 import com.pms.processpension.ProcessPensionService.exception.AadharNumberNotFound;
 import com.pms.processpension.ProcessPensionService.exception.AuthorizationException;
-//import com.pms.processpension.ProcessPensionService.exception.PensionerDetailException;
+
 import com.pms.processpension.ProcessPensionService.model.PensionDetail;
 import com.pms.processpension.ProcessPensionService.model.PensionerDetail;
 import com.pms.processpension.ProcessPensionService.model.PensionerInput;
-import com.pms.processpension.ProcessPensionService.restClients.AuthClient;
+import com.pms.processpension.ProcessPensionService.repository.PensionDetailRepository;
+import com.pms.processpension.ProcessPensionService.repository.PensionerDetailRepository;
+
 import com.pms.processpension.ProcessPensionService.restClients.PensionerDetailClient;
 
 @Service
@@ -29,6 +33,16 @@ public class ProcessPensionServiceDaoImpl implements ProcessPensionServiceDao {
 
 	@Autowired
 	private PensionerDetailClient pensionerDetailClient;
+	
+	@Autowired
+	private PensionerDetailRepository pensionerDetailsRepository;
+	
+	@Autowired
+	private PensionDetailRepository pensionDetailsRepository;
+	
+	@SuppressWarnings("unused")
+	@Autowired 
+	private PensionerDetail pensionerDetail;
 
 //	@Autowired
 //	private AuthClient authClient;
@@ -69,6 +83,7 @@ public class ProcessPensionServiceDaoImpl implements ProcessPensionServiceDao {
 	public PensionDetail calculatePension(String token, PensionerInput pensionerInput) 
 			throws   AuthorizationException, AadharNumberNotFound {
 		
+		
 		logger.info("START");
 		
 		System.out.println("AdddhaarNumber" + pensionerInput.getAadhaarNumber());
@@ -76,9 +91,11 @@ public class ProcessPensionServiceDaoImpl implements ProcessPensionServiceDao {
 		PensionerDetail pensionerDetail = null;
 		
 		try {
+			
 			pensionerDetail =pensionerDetailClient.getPensionerDetailByAadhaar(token, 
 					pensionerInput.getAadhaarNumber());
 			
+			pensionerDetailsRepository.save(pensionerDetail);
 			System.out.println("pensionerDetail" +pensionerDetail);
 		}catch(Exception e) {
 			throw new AadharNumberNotFound("Aadhar Card Number is not Valid. Please check it and try again");
@@ -99,9 +116,16 @@ public class ProcessPensionServiceDaoImpl implements ProcessPensionServiceDao {
 				pensionAmount = 0.5 * salary + allowances;
 			}
 			
-			PensionDetail pensionDetail = new PensionDetail();
+			
 			pensionDetail.setPensionAmount(pensionAmount);
 			pensionDetail.setBankServiceCharge(getBankServiceCharge(pensionerDetail.getBank().getBankType()));
+			
+			
+				
+			
+			
+				pensionDetailsRepository.save(pensionDetail);
+			
 			
 			return pensionDetail;
 		}

@@ -48,7 +48,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 		logger.info("START");
 
-		web.ignoring().antMatchers("/authapp/login", "/h2-console/**", "/v2/api-docs", "/configuration/ui",
+		web.ignoring().antMatchers("/login", "/h2-console/**", "/v2/api-docs", "/configuration/ui",
 				"/configuration/security", "/webjars/**");
 		
 		logger.info("END");

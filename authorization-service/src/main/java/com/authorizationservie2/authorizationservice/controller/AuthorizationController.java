@@ -11,17 +11,17 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.ResponseBody;
+
 import org.springframework.web.bind.annotation.RestController;
 
 import com.authorizationservie2.authorizationservice.jwtutilservices.JwtUserDetailsService;
 import com.authorizationservie2.authorizationservice.jwtutilservices.TokenManager;
-//import com.authorizationservie2.authorizationservice.model.AuthorizationResponse;
+
 import com.authorizationservie2.authorizationservice.model.UserData;
 
 @RestController
 public class AuthorizationController {
-	private static Logger logger = LoggerFactory.getLogger(AuthorizationController.class);
+	private  static  Logger logger = LoggerFactory.getLogger(AuthorizationController.class);
 	@Autowired
 	private TokenManager tokenManager;
 
@@ -89,7 +89,7 @@ public class AuthorizationController {
 			String token1 = token.substring(7);
 			// if the token is valid
 			if (tokenManager.validateJwtToken(token1)) {
-				String username = tokenManager.extractUsername(token1);
+				tokenManager.extractUsername(token1);
 				return true;
 			}
 			// if the token is invalid

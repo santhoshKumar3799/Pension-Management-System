@@ -128,33 +128,36 @@ public class PensionerDetailController {
 			PensionerDetail pensionerDetail;
 			
 			//loop through the pensioner list
-			for (int i = 0; i < PensionerDetailController.pensionersList.size(); i++) {
+			 
+			 for (PensionerDetail pDetail : pensionersList){
+				System.out.println(PensionerDetailController.pensionersList.size());
+				LOGGER.info("PRINTED SIZE");
 				
 				//get the i th pensionerdetail
-				pensionerDetail = PensionerDetailController.pensionersList.get(i);
+//				pensionerDetail = PensionerDetailController.pensionersList.get(i);
 				
 				//if the retreived pensionerdetail's aadhaar number 
 				//is same as the request aadhar number
-				if (pensionerDetail.getAadhaarNumber() == aadhaarNumber) {
+				if (aadhaarNumber == pDetail.getAadhaarNumber()) {
 					LOGGER.info("END");
 					
 					
 					//return the pensioner detail
 					//return pensionerDetail;
-					return new ResponseEntity<PensionerDetail>(pensionerDetail, HttpStatus.OK);
-				}else {
-					LOGGER.info("END - Wrong aadhaar number");
-					
-					return new ResponseEntity<String>("Invalid aadhaar number", HttpStatus.FORBIDDEN);
+					return new ResponseEntity<PensionerDetail>(pDetail, HttpStatus.OK);
 				}
+//					else {
+//					LOGGER.info("END - Wrong aadhaar number");
+//					
+//					return new ResponseEntity<String>("Invalid aadhaar number", HttpStatus.FORBIDDEN);
+//				}
 			}
-			LOGGER.info("END");
-			return null;
-		}else {
+			
+		}
 		LOGGER.info("END");
 
 		return new ResponseEntity<String>("Invalid token", HttpStatus.FORBIDDEN);
-		}
+		
 	}
 	
 	

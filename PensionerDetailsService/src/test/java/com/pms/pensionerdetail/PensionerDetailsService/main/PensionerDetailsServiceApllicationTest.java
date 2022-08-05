@@ -1,6 +1,6 @@
 package com.pms.pensionerdetail.PensionerDetailsService.main;
 
-import static org.junit.jupiter.api.Assertions.*;
+
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

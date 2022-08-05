@@ -2,6 +2,14 @@ package com.pms.processpension.ProcessPensionService.model;
 
 import java.util.Date;
 
+
+import javax.persistence.Embedded;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -11,15 +19,30 @@ import io.swagger.annotations.ApiModel;
 
 @Component
 @ApiModel(description = "Details about the pensioner")
+@Entity
+@Table(name = "PENSIONER_DETAIL")
 public class PensionerDetail {
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private int id;
+	
 	private String name;
+	
+	//@Column(name = "DOB")
 	@JsonFormat(shape = JsonFormat.Shape.STRING ,pattern = "YYYY-MM-dd" , timezone="IST")
 	private Date dateOfBirth;
+	//@Column(name = "PAN")
 	private String pan;
+	//@Column(name = "SALARY")
 	private double salary;
+	//@Column(name = "ALLOWANCE")
 	private double allowance;
+	//@Column(name = "PENSION_TYPE")
 	private String pensionType;
+	//@Column(name = "NAME")
 	private long aadhaarNumber;
+	@Embedded
 	private BankDetails bank;
 	public String getName() {
 		return name;

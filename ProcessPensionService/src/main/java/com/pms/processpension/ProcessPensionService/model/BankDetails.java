@@ -1,5 +1,8 @@
 package com.pms.processpension.ProcessPensionService.model;
 
+import javax.persistence.Embeddable;
+
+@Embeddable
 public class BankDetails {
 	private String bankName;
 	private long accountNumber;

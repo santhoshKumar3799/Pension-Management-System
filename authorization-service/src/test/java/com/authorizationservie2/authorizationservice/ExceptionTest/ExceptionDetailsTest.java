@@ -1,6 +1,6 @@
 package com.authorizationservie2.authorizationservice.ExceptionTest;
 
-import static org.junit.Assert.*;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import java.time.LocalDateTime;
 

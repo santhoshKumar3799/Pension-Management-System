@@ -5,12 +5,12 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
+
 
 import org.junit.Test;
-import org.junit.jupiter.api.Assertions;
 
-import org.junit.platform.runner.JUnitPlatform;
+
+
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -39,7 +39,7 @@ public class TokenManagerTest {
 
 	}
 
-	private static String token = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbnVzZXIxIiwiZXhwIjoxNjU5NTQ3NjI4LCJpYXQiOjE2NTk1MTE2Mjh9.yhoffdw3tchi8oWLShu3-B2FY_0GNUyDrIc9sHmDXp0iJtHJqNjo6_YDclkZzVjGz4h2hG3_N61-CnAxWBwc-Q";
+	private static String token = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbnVzZXIxIiwiZXhwIjoxNjU5NjYzMjU4LCJpYXQiOjE2NTk2MjcyNTh9.0sXltc9n-cGI3UgXUVvkHkUrmukqBkqkFbAj4YRNEiPBfvdGza2gglqOOdCZ8-Z98zl6Ve2H56MStJmYBcDNXA";
 
 	@Test
 	public void extractUsernameTestSuccess() {
