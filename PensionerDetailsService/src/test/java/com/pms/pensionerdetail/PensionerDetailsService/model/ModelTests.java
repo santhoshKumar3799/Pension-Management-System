@@ -43,7 +43,7 @@ public class ModelTests {
 		assertThat(assertThat(b).isNotNull());
 
 	}
-//	
+	
 	@Test
 	public void SetterArgsBankDetailTest() {
 		BankDetails bankDetails = new BankDetails("SBI", 1234567890L, "private") ;

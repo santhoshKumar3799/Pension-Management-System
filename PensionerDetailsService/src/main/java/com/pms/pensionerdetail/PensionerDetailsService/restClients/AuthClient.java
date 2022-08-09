@@ -7,7 +7,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
 
 
-//import com.pms.pensionerdetail.PensionerDetailsService.model.AuthResponse;
+
+
+
 
 /**
  * To access Authorization-microservice
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestHeader;
 //@FeignClient(name = "authorization-service", url = "http://localhost:8000")
 @FeignClient(name = "authorization-service")
 @Component
+
 public interface AuthClient {
 	@GetMapping("/validate")
 	public Boolean getTokenValidity(@RequestHeader("Authorization") String requestTokenHeader);

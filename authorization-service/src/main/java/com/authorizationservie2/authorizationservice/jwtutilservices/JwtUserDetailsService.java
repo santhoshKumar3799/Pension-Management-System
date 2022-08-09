@@ -55,6 +55,7 @@ public class JwtUserDetailsService implements UserDetailsService {
 				throw new UsernameNotFoundException("User not found with userID: "  + uid);
 			}
 		} catch (Exception e) {
+			
 			logger.info("EXCEPTION - UsernameNotFoundException");
 
 			throw new UsernameNotFoundException("User not found with userID: "  + uid);

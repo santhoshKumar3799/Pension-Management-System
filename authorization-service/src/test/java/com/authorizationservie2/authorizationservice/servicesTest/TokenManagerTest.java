@@ -39,7 +39,7 @@ public class TokenManagerTest {
 
 	}
 
-	private static String token = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbnVzZXIxIiwiZXhwIjoxNjU5NjYzMjU4LCJpYXQiOjE2NTk2MjcyNTh9.0sXltc9n-cGI3UgXUVvkHkUrmukqBkqkFbAj4YRNEiPBfvdGza2gglqOOdCZ8-Z98zl6Ve2H56MStJmYBcDNXA";
+	private static String token = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbnVzZXIxIiwiZXhwIjoxNjYwMDg2ODI2LCJpYXQiOjE2NjAwNTA4MjZ9.47KHB4LXRrOWC0uZx1JIuv9Cwr_E2oGE9JwrYOzMXL2mvLPXAPM1IKn6tBjLEJnL-C3nKu32kn8azKhFncTL4A";
 
 	@Test
 	public void extractUsernameTestSuccess() {

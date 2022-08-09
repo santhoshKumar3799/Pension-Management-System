@@ -25,13 +25,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @RunWith(SpringRunner.class)
 public class AuthControllerTest {
 
-//	@Test
-//	void test() {
-//		assertEquals("CD","CD");
-//		//EXPECTED,ACTUAL VALUE
-//	}
 	
-	private static String token = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbnVzZXIxIiwiZXhwIjoxNjU5NTQ3NjI4LCJpYXQiOjE2NTk1MTE2Mjh9.yhoffdw3tchi8oWLShu3-B2FY_0GNUyDrIc9sHmDXp0iJtHJqNjo6_YDclkZzVjGz4h2hG3_N61-CnAxWBwc-Q";
+	private static String token = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbnVzZXIxIiwiZXhwIjoxNjYwMDg2ODI2LCJpYXQiOjE2NjAwNTA4MjZ9.47KHB4LXRrOWC0uZx1JIuv9Cwr_E2oGE9JwrYOzMXL2mvLPXAPM1IKn6tBjLEJnL-C3nKu32kn8azKhFncTL4A";
+	
 	@Autowired
 	private MockMvc mockMvc;
 
@@ -48,6 +44,7 @@ public class AuthControllerTest {
 
 	}
 	
+	
 	@Test
 	public void loginTestSuccess() throws Exception{
 		UserData admin = new UserData("adminuser1", "adminuser1", "adminuser1", "adminuser1");
@@ -56,6 +53,7 @@ public class AuthControllerTest {
 		andExpect(status().isOk());
 	}
 	
+	
 	@Test
 	public void loginTestFail() throws Exception{
 		UserData admin = new UserData("adminuser1", "randomUser", "randomUser", "randomUser");
@@ -63,6 +61,7 @@ public class AuthControllerTest {
 		mockMvc.perform(post("/login").contentType(MediaType.APPLICATION_JSON).content(asJsonString(admin))).
 		andExpect(status().isForbidden());
 	}
+	
 	
 	@Test
 	public void validateTestSuccess() throws Exception {
@@ -77,11 +76,14 @@ public class AuthControllerTest {
 		.equals(false);
 
 	}
+	
 	@Test
 	public void tokenisNullTest() throws Exception{
 		mockMvc.perform(get("/validate").header("Authorization", "").contentType(MediaType.TEXT_PLAIN))
 		.equals(false);
 	}
+	
+	
 	
 	public static String asJsonString(UserData admin) throws Exception {
 		

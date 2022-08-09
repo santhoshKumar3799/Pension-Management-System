@@ -29,7 +29,7 @@ import com.pms.pensionerdetail.PensionerDetailsService.model.PensionerDetail;
 @AutoConfigureMockMvc
 @RunWith(SpringRunner.class)
 public class PensionDetailControllerTests {
-	private static String token = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbnVzZXIxIiwiZXhwIjoxNjU5NzIwNjgzLCJpYXQiOjE2NTk2ODQ2ODN9.3YZuVblJvHz_RW6thX3ffgmrmeS2RnHr1IJmIKDIJzNkWvvNP7e9AEfE7AvNKfAak4howuUOuiW72efIcI4ruQ";
+	private static String token = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbnVzZXIxIiwiZXhwIjoxNjYwMDg2ODI2LCJpYXQiOjE2NjAwNTA4MjZ9.47KHB4LXRrOWC0uZx1JIuv9Cwr_E2oGE9JwrYOzMXL2mvLPXAPM1IKn6tBjLEJnL-C3nKu32kn8azKhFncTL4A";
 
 	@Autowired
 	private MockMvc mockMvc;

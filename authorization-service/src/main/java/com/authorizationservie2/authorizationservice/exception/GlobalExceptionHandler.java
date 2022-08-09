@@ -23,13 +23,6 @@ public class GlobalExceptionHandler {
 	
 	private static Logger logger = LoggerFactory.getLogger(GlobalExceptionHandler.class);
 
-//	public ResponseEntity<Object> handleHttpMessageNotReadable(HttpMessageNotReadableException ex, HttpHeaders headers,
-//			HttpStatus status, WebRequest request) {
-//		ExceptionDetails exceptionDetails = new ExceptionDetails(LocalDateTime.now(), ex.getMessage());
-//		logger.error(ex.getMessage());
-//		return new ResponseEntity<>(exceptionDetails, status);
-//	}
-
 	@ExceptionHandler(AuthorizationException.class)
 	public ResponseEntity<Object> handleGlobalException(AuthorizationException ex, WebRequest request) {
 		ExceptionDetails exceptionDetail = new ExceptionDetails(LocalDateTime.now(), ex.getMessage());

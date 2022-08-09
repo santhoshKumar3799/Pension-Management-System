@@ -75,8 +75,7 @@ public class AuthorizationController {
 	public Boolean getTokenValidity(@RequestHeader("Authorization") String token) {
 		logger.info("START");
 
-		// create a instance of authorization response bean
-//		AuthorizationResponse res = new AuthorizationResponse();
+		
 		// if the token is null
 		if (token.isEmpty()) {
 

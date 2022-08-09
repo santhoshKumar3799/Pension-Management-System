@@ -1,10 +1,8 @@
 package com.pms.processpension.ProcessPensionService.service;
 
-
 import java.util.HashMap;
 
 import java.util.Map;
-
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,19 +31,16 @@ public class ProcessPensionServiceDaoImpl implements ProcessPensionServiceDao {
 
 	@Autowired
 	private PensionerDetailClient pensionerDetailClient;
-	
+
 	@Autowired
 	private PensionerDetailRepository pensionerDetailsRepository;
-	
+
 	@Autowired
 	private PensionDetailRepository pensionDetailsRepository;
-	
-	@SuppressWarnings("unused")
-	@Autowired 
-	private PensionerDetail pensionerDetail;
 
-//	@Autowired
-//	private AuthClient authClient;
+	@SuppressWarnings("unused")
+	@Autowired
+	private PensionerDetail pensionerDetail;
 
 	private static final Map<String, Double> banks = createMap();
 
@@ -78,84 +73,67 @@ public class ProcessPensionServiceDaoImpl implements ProcessPensionServiceDao {
 		else
 			return 0;
 	}
-	
-	
-	public PensionDetail calculatePension(String token, PensionerInput pensionerInput) 
-			throws   AuthorizationException, AadharNumberNotFound {
-		
-		
-		logger.info("START");
-		
-		System.out.println("AdddhaarNumber" + pensionerInput.getAadhaarNumber());
 
-		PensionerDetail pensionerDetail = null;
-		
+	/**
+	 * This method calculates the pension and returns the pension amount and bank
+	 * service charge
+	 * 
+	 * And also saves the pensiondetail and pensioner detail to the in-memory
+	 * database(H2)
+	 * 
+	 * @param pensionerInput
+	 * @return pensionDetail
+	 */
+
+	public PensionDetail calculatePension(String token, PensionerInput pensionerInput)
+			throws AuthorizationException, AadharNumberNotFound {
+
+		logger.info("START");
+
 		try {
-			
-			pensionerDetail =pensionerDetailClient.getPensionerDetailByAadhaar(token, 
+
+			pensionerDetail = pensionerDetailClient.getPensionerDetailByAadhaar(token,
 					pensionerInput.getAadhaarNumber());
-			
+
 			pensionerDetailsRepository.save(pensionerDetail);
-			System.out.println("pensionerDetail" +pensionerDetail);
-		}catch(Exception e) {
+
+			System.out.println("pensionerDetail" + pensionerDetail);
+
+		} catch (Exception e) {
+
+			logger.info("END");
+
 			throw new AadharNumberNotFound("Aadhar Card Number is not Valid. Please check it and try again");
+
 		}
-		if(pensionerInput.getAadhaarNumber() == pensionerDetail.getAadhaarNumber() 
-//				&& pensionerInput.getName().equalsIgnoreCase(pensionerDetail.getName()) 
-//				&& pensionerInput.getPan().equalsIgnoreCase(pensionerDetail.getPan())
-				) {
+
+		if (pensionerInput.getAadhaarNumber() == pensionerDetail.getAadhaarNumber()) {
 			double salary = pensionerDetail.getSalary();
 			double allowances = pensionerDetail.getAllowance();
 			double pensionAmount = 0;
-			if(pensionerDetail.getPensionType().equalsIgnoreCase("Self pension"))
-			{
-				pensionAmount = 0.8*salary + allowances;
-				
-			}else if(pensionerDetail.getPensionType().equalsIgnoreCase("Family pension"))
-			{
+
+			// pension amount logic based on pension type
+			if (pensionerDetail.getPensionType().equalsIgnoreCase("Self pension")) {
+				pensionAmount = 0.8 * salary + allowances;
+
+			} else if (pensionerDetail.getPensionType().equalsIgnoreCase("Family pension")) {
 				pensionAmount = 0.5 * salary + allowances;
 			}
-			
-			
+
 			pensionDetail.setPensionAmount(pensionAmount);
 			pensionDetail.setBankServiceCharge(getBankServiceCharge(pensionerDetail.getBank().getBankType()));
-			
-			
-				
-			
-			
-				pensionDetailsRepository.save(pensionDetail);
-			
-			
-			return pensionDetail;
-		}
-		else
-		{
-			throw new AadharNumberNotFound("Aadhar Card Number is not Valid. Please check it and try again");
-		}
-	}		
-	
 
-//	/**
-//	 * This method validates token
-//	 * 
-//	 * @param String
-//	 *            token
-//	 * @return Boolean
-//	 */
-//	public Boolean isSessionValid(String token) {
-//		logger.info("START");
-//
-//		try {
-//			authClient.getValidity(token);
-//		} catch (Exception e) {
-//			logger.info("EXCEPTION");
-//
-//			return false;
-//		}
-//		logger.info("END");
-//
-//		return true;
-//	}
+			pensionDetailsRepository.save(pensionDetail);
+
+			logger.info("END");
+			return pensionDetail;
+
+		} else {
+
+			logger.info("END");
+			throw new AadharNumberNotFound("Aadhar Card Number is not Valid. Please check it and try again");
+
+		}
+	}
 
 }

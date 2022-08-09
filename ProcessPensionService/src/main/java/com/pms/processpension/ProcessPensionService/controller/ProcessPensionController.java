@@ -39,44 +39,9 @@ public class ProcessPensionController {
 	 * charge
 	 * 
 	 * @param String
-	 *            token, name, dob, pan, aadhaar, type
-	 * @return Pensioner
+	 *            token, PensionerInput
+	 * @return PensionDetail
 	 */
-
-	// @PostMapping("/ProcessPension")
-	// @ApiOperation(value = "Provides the pension amount and bankservice charge ",
-	// notes = "Validates the pensioner details on the basis of aadhaar number",
-	// response = PensionDetail.class)
-	// public PensionDetail getPensionDetail(@RequestHeader("Authorization") String
-	// token, @RequestBody String name,
-	// @RequestBody String dob, @RequestBody String pan, @RequestBody Long aadhaar,
-	// @RequestBody String type)
-	// throws Exception {
-	// try {
-	// logger.info("START");
-	// if (processPensionserviceDao.isSessionValid(token)) {
-	// if (processPensionserviceDao.validatePensionerDetails(token, name,
-	// new SimpleDateFormat("dd-MM-yyyy").parse(dob), pan, aadhaar, type)) {
-	// PensionDetail pensionDetail =
-	// processPensionserviceDao.calculatePension(token, aadhaar);
-	// logger.info("END");
-	// return pensionDetail;
-	// }else {
-	// logger.info("END");
-	//
-	// return null;
-	// }
-	// }else {
-	// logger.info("END");
-	//
-	// return null;
-	// }
-	//
-	// }catch(Exception e) {
-	// logger.info("EXCEPTION");
-	//
-	// throw e;
-	// }
 
 	@PostMapping("/ProcessPension")
 	@ApiOperation(notes = "Returns the Pension Details", value = "Find the pension details")
@@ -85,14 +50,20 @@ public class ProcessPensionController {
 			@RequestHeader(value = "Authorization", required = true) String requestTokenHeader,
 			@RequestBody PensionerInput pensionerInput)
 			throws AuthorizationException, AadharNumberNotFound {
+		
 		logger.info("START");
+		
 		System.out.println("In process pension controller");
+		
 		if(authClient.getTokenValidity(requestTokenHeader)) {
+			
 			System.out.println("Authorization is  success");
+			
 			logger.info("END");
 			return processPensionserviceDao.calculatePension(requestTokenHeader, pensionerInput);
 		}else
 		{
+			logger.info("Not allowed");
 			throw new AuthorizationException("Not allowed");
 		}
 	}
