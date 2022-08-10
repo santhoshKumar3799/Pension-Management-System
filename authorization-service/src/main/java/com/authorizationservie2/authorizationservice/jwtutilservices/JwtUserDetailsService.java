@@ -47,7 +47,7 @@ public class JwtUserDetailsService implements UserDetailsService {
 				logger.info("END - User found");
 
 				return new User(custuser.getUserid(), custuser.getUpassword(),
-						(Collection<? extends GrantedAuthority>) new ArrayList<Object>());
+						new ArrayList<>());
 			} else {
 
 				logger.info("END - UsernameNotFound");
