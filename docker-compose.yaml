@@ -1,0 +1,47 @@
+version: '3.7'
+services:
+  naming-server:
+    image: sabthosh3799/naming-server.jar
+    mem_limit: 700m
+    ports:
+     - "8761:8761"
+    networks:
+      - pms-network
+  authorization-service:
+    image: sabthosh3799/authorization-service.jar
+    mem_limit: 700m
+    ports:
+      - "8000:8000"
+    networks:
+      - pms-network 
+    depends_on:
+      - naming-server
+    environment:
+      EUREKA.CLIENT.SERVICEURL.DEFAULTZONE: http://naming-server:8761/eureka
+  pensioner-detail-service:
+    image: sabthosh/pensioner-detail-service.jar
+    mem_limit: 700m
+    ports:
+      - "8100:8100"
+    networks:
+      - pms-network 
+    depends_on:
+      - naming-server
+    environment:
+      EUREKA.CLIENT.SERVICEURL.DEFAULTZONE: http://naming-server:8761/eureka
+  process-pension-service:
+    image: sabthosh3799/process-pension-service.jar
+    mem_limit: 700m
+    ports:
+      - "8200:8200"
+    networks:
+      - pms-network 
+    depends_on:
+      - naming-server
+    environment:
+      EUREKA.CLIENT.SERVICEURL.DEFAULTZONE: http://naming-server:8761/eureka
+    
+   
+networks:
+      pms-network:
+

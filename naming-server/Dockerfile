@@ -1,5 +1,4 @@
-FROM openjdk:11
-
-COPY jarname jarname.jar
-
-ENTRYPOINT ["java","-jar","/jarname.jar"]
+FROM openjdk:8
+EXPOSE 8761
+ADD target/naming-server.jar naming-server.jar
+ENTRYPOINT ["java","-jar","/naming-server.jar"]

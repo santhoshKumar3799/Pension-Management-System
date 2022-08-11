@@ -1,5 +1,4 @@
-FROM openjdk:11
-
-COPY jarname jarname.jar
-
-ENTRYPOINT ["java","-jar","/jarname.jar"]
+FROM openjdk:8
+EXPOSE 8000
+ADD target/authorization-service.jar authorization-service.jar
+ENTRYPOINT ["java","-jar","/authorization-service.jar"]

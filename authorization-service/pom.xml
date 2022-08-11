@@ -104,6 +104,12 @@
 			<version>1.8.2</version>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.13.2</version>
+			<scope>test</scope>
+		</dependency>
 
 		<!-- https://mvnrepository.com/artifact/org.junit.platform/junit-platform-commons -->
 		<dependency>
@@ -139,6 +145,7 @@
 			</plugin>
 
 		</plugins>
+		<finalName>authorization-service</finalName>
 	</build>
 
 </project>
