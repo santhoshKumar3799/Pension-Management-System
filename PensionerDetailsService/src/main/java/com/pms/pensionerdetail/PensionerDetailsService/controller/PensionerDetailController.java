@@ -1,13 +1,13 @@
 package com.pms.pensionerdetail.PensionerDetailsService.controller;
 
-import java.io.File;
 import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -15,26 +15,18 @@ import javax.annotation.PostConstruct;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.ClassPathResource;
-import org.springframework.core.io.Resource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 //import com.authorizationservie2.authorizationservice.model.UserData;
 import com.opencsv.CSVReader;
-import com.opencsv.CSVWriter;
-import com.opencsv.exceptions.CsvException;
 import com.opencsv.exceptions.CsvValidationException;
 import com.pms.pensionerdetail.PensionerDetailsService.PensionerDetailsServiceApplication;
-
 //import com.pms.pensionerdetail.PensionerDetailsService.Dao.PensionerDetailServiceDao;
 import com.pms.pensionerdetail.PensionerDetailsService.model.BankDetails;
 import com.pms.pensionerdetail.PensionerDetailsService.model.PensionerDetail;
@@ -77,17 +69,19 @@ public class PensionerDetailController {
 	 * @throws NumberFormatException 
 	 * 
 	 */
-	public static void readCsv() throws IOException, CsvValidationException, NumberFormatException, ParseException {
+	public  void readCsv() throws IOException, CsvValidationException, NumberFormatException, ParseException {
 		PensionerDetailController.pensionersList.clear();
 
-		Resource resource = new ClassPathResource("details2.csv");
-		
-			File file = resource.getFile();
-			CSVReader reader = new CSVReader(new FileReader(file));
+//		Resource resource = new ClassPathResource("details2.csv");
+//		
+//			File file = resource.getFile();
+			InputStream file = getClass().getResourceAsStream("/details2.csv");
+			Reader  reader1 = new InputStreamReader(file);
+			CSVReader reader =new CSVReader(reader1) ;
 
 			String[] pensionerString;
 			PensionerDetail pensionerDetail;
-			String[] line = reader.readNext();
+			reader.readNext();
 
 			while ((pensionerString = reader.readNext()) != null) // returns a Boolean value
 			{
@@ -98,7 +92,7 @@ public class PensionerDetailController {
 				PensionerDetailController.pensionersList.add(pensionerDetail);
 			}
 			
-//			reader.close();
+			reader.close();
 
 		
 		LOGGER.info("END");
