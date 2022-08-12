@@ -19,7 +19,7 @@ services:
     environment:
       EUREKA.CLIENT.SERVICEURL.DEFAULTZONE: http://naming-server:8761/eureka
   pensioner-detail-service:
-    image: sabthosh/pensioner-detail-service.jar
+    image: sabthosh3799/pensioner-detail-service.jar
     mem_limit: 700m
     ports:
       - "8100:8100"
