@@ -8,10 +8,9 @@ import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
 
-import io.swagger.annotations.ApiModel;
+
 
 @Component
-@ApiModel(description = "Pension details")
 @Entity
 @Table(name = "PENSION_DETAIL")
 public class PensionDetail {

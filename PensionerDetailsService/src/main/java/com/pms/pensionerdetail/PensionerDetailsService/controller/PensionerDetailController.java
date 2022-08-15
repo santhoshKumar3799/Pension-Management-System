@@ -32,7 +32,7 @@ import com.pms.pensionerdetail.PensionerDetailsService.model.BankDetails;
 import com.pms.pensionerdetail.PensionerDetailsService.model.PensionerDetail;
 import com.pms.pensionerdetail.PensionerDetailsService.restClients.AuthClient;
 
-import io.swagger.annotations.ApiOperation;
+
 
 @RestController
 public class PensionerDetailController {
@@ -109,7 +109,7 @@ public class PensionerDetailController {
 	 */
 	@CrossOrigin
 	@GetMapping("/PensionerDetailByAadhaar")
-	@ApiOperation(value = "Provides the pensioner details", response = PensionerDetail.class)
+	
 	
 	public ResponseEntity<?> getPensionerDetailByAadhaar(@RequestHeader("Authorization") String token,
 			@RequestParam(name="aadhaarNumber") long aadhaarNumber) throws Exception {

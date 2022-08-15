@@ -19,7 +19,7 @@ import com.pms.processpension.ProcessPensionService.model.PensionerInput;
 import com.pms.processpension.ProcessPensionService.restClients.AuthClient;
 import com.pms.processpension.ProcessPensionService.restClients.PensionerDetailClient;
 
-import io.swagger.annotations.ApiOperation;
+
 
 @RestController
 public class ProcessPensionController {
@@ -44,7 +44,6 @@ public class ProcessPensionController {
 	 */
 
 	@PostMapping("/ProcessPension")
-	@ApiOperation(notes = "Returns the Pension Details", value = "Find the pension details")
 	@CrossOrigin
 	public PensionDetail getPensionDetail(
 			@RequestHeader(value = "Authorization", required = true) String requestTokenHeader,

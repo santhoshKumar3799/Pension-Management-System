@@ -2,10 +2,9 @@ package com.pms.processpension.ProcessPensionService.model;
 
 import org.springframework.stereotype.Component;
 
-import io.swagger.annotations.ApiModel;
+
 
 @Component
-@ApiModel(description = "Pensioner Input")
 public class PensionerInput {
 	private long aadhaarNumber;
 

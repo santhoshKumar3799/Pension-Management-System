@@ -15,10 +15,9 @@ import org.springframework.stereotype.Component;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 
-import io.swagger.annotations.ApiModel;
+
 
 @Component
-@ApiModel(description = "Details about the pensioner")
 @Entity
 @Table(name = "PENSIONER_DETAIL")
 public class PensionerDetail {
