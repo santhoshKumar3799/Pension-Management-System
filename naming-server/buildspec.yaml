@@ -5,6 +5,7 @@ phases:
       java: corretto17
   pre_build:
     commands:
+    - cd naming-server
     - mvn install
     - echo Logging in to Amazon ECR...
     - aws --version
@@ -27,4 +28,4 @@ phases:
     - printf '[{"name":"%s","imageUri":"%s"}]' $CONTAINER_NAME $IMAGE_URI > imagedefinitions.json
 artifacts:
   files:
-  - imagedefinitions.json
+  - naming-server/imagedefinitions.json
