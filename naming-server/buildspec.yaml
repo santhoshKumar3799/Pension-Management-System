@@ -16,6 +16,7 @@ phases:
     commands:
     - echo Build started on `date`
     - echo $IMAGE_URI
+    - docker login -u sabthosh3799 -p ctSSup@2811
     - docker build -t naming-server .
     - docker tag naming-server $REPOSITORY_URI:naming-server
   post_build:
