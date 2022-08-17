@@ -3,7 +3,7 @@ Resources:
   - TargetService:
       Type: AWS::ECS::Service
       Properties:
-        TaskDefinition: "arn:aws:ecs:us-east-1:860061945305:task-definition/pms-service-3799v1:1"
+        TaskDefinition: "arn:aws:ecs:us-east-1:860061945305:task-definition/pms-service-3799v1:3"
         LoadBalancerInfo:
           ContainerName: "1-naming-server"
           ContainerPort: "8761"
