@@ -5,7 +5,7 @@ phases:
       java: corretto17
   pre_build:
     commands:
-    - cd authorization-service
+    - cd PensionerDetailsService
     - mvn install
     - echo Logging in to Amazon ECR...
     - aws --version
@@ -16,17 +16,17 @@ phases:
     commands:
     - echo Build started on `date`
     - echo $IMAGE_URI
-    - docker build -t authorization-service .
-    - docker tag authorization-service $REPOSITORY_URI:authorization-service
+    - docker build -t pensioner-detail-service .
+    - docker tag naming-server $REPOSITORY_URI:pensioner-detail-service
   post_build:
     commands:
     - printenv
     - echo Build completed on `date`
     - echo $(docker images)
     - echo Pushing docker image
-    - docker push $REPOSITORY_URI:authorization-service
+    - docker push $REPOSITORY_URI:pensioner-detail-service
     - echo push completed
-    - printf '[{"name":"2-auth-service","imageUri":"%s"}]' $REPOSITORY_URI:authorization-service > taskdefinition.json
+    - printf '[{"name":"3-pensioner-detail-service","imageUri":"%s"}]' $REPOSITORY_URI:pensioner-detail-service > taskdefinition.json
 artifacts:
   files:
-  - authorization-service/taskdefinition.json
+  - PensionerDetailsService/taskdefinition.json
