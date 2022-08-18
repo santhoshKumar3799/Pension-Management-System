@@ -15,7 +15,7 @@ export class ServiceService {
     //`${this.baseUrl}/login`
 
   generateToken(userData){
-    return this.http.post<any>("http://localhost:8000/login", userData);
+    return this.http.post<any>("http://44.205.9.132:8000/login", userData);
   }
 
   //login user

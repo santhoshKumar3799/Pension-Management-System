@@ -1,62 +1,10 @@
-<!-- <form [formGroup] = "aadhaarForm" (ngSubmit) = "onSubmit()">
-    <section class="vh-100 gradient-custom">
-      <div class="container py-5 h-100">
-        <div class="row d-flex justify-content-center align-items-center h-100">
-          <div class="col-12 col-md-8 col-lg-6 col-xl-5">
-            <div
-              class="card bg-dark text-white"
-              style="border-radius: 1rem; height: 400px; "
-              
-            >
-              <div
-                class="card-body p-5 text-center"
-                style=" height: auto"
-              >
-                <div class="mb-md-5 mt-md-4 pb-5" style="margin:auto;">
-                  <h2 class="fw-bold mb-2 ">Enter Aadhaar</h2>
-                  <p class="text-white-50 ">
-                    Please enter your aadhaar number
-                  </p>
-                  <div class="form-outline form-white mb-4" > -->
-                    <!-- <label class="form-label" for="aadhaar" style="font-size: 15px;">AADHAAR NUMBER</label> -->
-                    <!-- <input
-                      type="text"
-                      id="aadhaar"
-                      name="aadhaar"
-                      formControlName = "aadhaar"
-                      class="form-control form-control-lg"
-                      autocomplete="off"
-                      style="padding: auto;"
-                    />
-                    <br>
-                    <span    class="help-block" *ngIf = "!aadhaarForm.get('aadhaar').valid && aadhaarForm.get('aadhaar').touched" style ="color:rgb(112, 190, 112); padding: auto;margin:auto">Enter a valid Aadhaar Number</span>
-                    <br>
-                    <div class="btn-toolbar text-center well"  style ="margin:auto; padding: auto;">
-                    <button class="btn btn-outline-dark btn-md px-5" style ="margin:auto;padding: auto;margin-top: 30px" type="submit" [disabled]="!aadhaarForm.valid" >
-                        Submit
-                      </button>
-                      <button class="btn btn-outline-dark btn-md px-5" style ="margin:auto;padding: auto;margin-top: 32px;" type="submit" (click) = "reset()">
-                        Reset
-                      </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      </div>
-    </section>
-</form> -->
-
-
 <div class="px-4 py-5  text-center gradient-custom" style="height:100%;">
   <form [formGroup]="aadhaarForm" (ngSubmit) = "onSubmit()">
     <div class="container mt-5 mb-5">
       <div class="row d-flex align-items-center justify-content-center">
         <div class="col-md-6">
           <div class="card px-5 py-5">
-            <span class="circle"><i class="fa fa-check"></i></span>
+            <span class="circle" routerLink="/dashboard"><i class="fa fa-check"></i></span>
   
             <h2 class="mt-3">Enter Aadhaar <br /></h2>
             <small class="mt-2 text-muted">

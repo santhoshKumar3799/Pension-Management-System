@@ -10,12 +10,12 @@ export class PensionDetailService {
   getPensionerDetail(aadhaarNumber) {
     const params = new HttpParams().set('aadhaarNumber', aadhaarNumber);
     return this.http.get<any>(
-      'http://localhost:8100/PensionerDetailByAadhaar',{params}
+      'http://44.205.9.132:8100/PensionerDetailByAadhaar',{params}
     );
   }
 
 
   getPensionDetail(userDetail){
-    return this.http.post<any>('http://localhost:8200/ProcessPension',userDetail);
+    return this.http.post<any>('http://44.205.9.132:8200/ProcessPension',userDetail);
   }
 }

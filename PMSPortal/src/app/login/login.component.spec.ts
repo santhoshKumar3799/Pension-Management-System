@@ -41,8 +41,6 @@ fdescribe('LoginComponent', () => {
 
   it('submitted should be true when onSubmit()', () => {
     spyOn(component,'onSubmit')
-    // expect(component.submitted).toBeTruthy();
-    // expect(component.authError).toBeFalsy();
-    // expect(component.blankCredentials).toBeFalsy();
+   
   });
 });

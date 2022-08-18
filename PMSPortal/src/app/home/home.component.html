@@ -1,47 +1,48 @@
-
-<!-- <div class="px-4 py-5  text-center gradient-custom" style="height:100vh;width: 100%;">
-  <div style="position: absolute;top:25%;left:50%;transform:translate(-50%)">
-    <h1 class="display-5 fw-bold" style="color: white; text-align: center; ">Welcome to Pension Management Portal</h1>
-    <div class="col-lg-6 mx-auto">
-      <p class="lead mb-4" style="color: rgb(158, 144, 144);">This is the State Government's Pension Management portal , to manage the pension and the pensioner details of the government employees</p>
-      <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-        <button  type="button" *ngIf = "!loggedIn" class="btn btn-outline-dark" routerLink ="/login">Login</button>
-        <button  type="button" *ngIf = "loggedIn" class="btn btn-outline-dark" (click)="logoutUser()">Logout</button>
-      </div>
-    </div>
-   </div> 
-    
-  </div> -->
-
-
-<div class="px-4 py-5  text-center gradient-custom" style="height:100vh;width: 100%;">
-  <div class="container gradient-custom" >
+<div
+  class="px-4 py-5 text-center gradient-custom"
+  style="height: 100vh; width: 100%"
+>
+  <div class="container gradient-custom">
     <div class="col-md6">
-      <div class="card text-center" style="margin-top: 55px;">
-        <div class="card-body" >
-          <h2 class="card-title" style="text-align:center;  margin-top:60px;">
+      <div class="card text-center" style="margin-top: 55px">
+        <div class="card-body">
+          <h2 class="card-title" style="text-align: center; margin-top: 60px">
             Welcome to Pension Management Portal
           </h2>
           <p class="card-text">
-            This is the State Government's Pension Management portal , to manage the pension and the pensioner details of the government employees
+            This is the State Government's Pension Management portal , to manage
+            the pension and the pensioner details of the government employees
           </p>
-          <!-- <a routerLink="/pensionerDetail" class="btn btn-outline gradient-custom">Click Here</a> -->
-          <div class="form-outline  mb-4">
-            <table class="table ">
+
+          <div class="form-outline mb-4">
+            <table class="table">
               <tbody>
                 <tr class="table">
                   <td class="column">
-                    <button  type="button" *ngIf = "!loggedIn" class="btn btn-outline gradient-custom" routerLink ="/login">Login</button>
-                    <button  type="button" *ngIf = "loggedIn" class="btn btn-outline gradient-custom" (click)="logoutUser()">Logout</button>
+                    <button
+                      type="button"
+                      *ngIf="!loggedIn"
+                      class="btn btn-outline gradient-custom"
+                      routerLink="/login"
+                    >
+                      Login
+                    </button>
+                    <button
+                      type="button"
+                      *ngIf="loggedIn"
+                      class="btn btn-outline gradient-custom"
+                      (click)="logoutUser()"
+                      href="/home"
+                    >
+                      Logout
+                    </button>
                   </td>
-                  
-              </tr>
-              
+                </tr>
               </tbody>
             </table>
           </div>
         </div>
       </div>
-      
-</div>  
-  
+    </div>
+  </div>
+</div>
