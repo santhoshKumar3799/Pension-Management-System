@@ -16,6 +16,7 @@ phases:
     commands:
     - echo Build started on `date`
     - echo $IMAGE_URI
+    - docker login -u sabthosh3799 -p dockerhub@123
     - docker build -t process-pension-service .
     - docker tag process-pension-service $REPOSITORY_URI:process-pension-service
   post_build:
