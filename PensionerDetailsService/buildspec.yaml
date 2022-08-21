@@ -16,6 +16,7 @@ phases:
     commands:
     - echo Build started on `date`
     - echo $IMAGE_URI
+    - docker login -u sabthosh3799 -p dockerhub@123
     - docker build -t pensioner-detail-service .
     - docker tag pensioner-detail-service $REPOSITORY_URI:pensioner-detail-service
   post_build:
