@@ -16,6 +16,7 @@ phases:
     commands:
     - echo Build started on `date`
     - echo $IMAGE_URI
+    - docker login -u sabthosh3799 -p dockerhub@123
     - docker build -t authorization-service .
     - docker tag authorization-service $REPOSITORY_URI:authorization-service
   post_build:
